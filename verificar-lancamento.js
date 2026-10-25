@@ -36,7 +36,7 @@ for (const f of htmls) {
   }
 }
 
-const publicos = [...arquivos.filter((f) => /\.(html|txt)$/.test(f)), 'app.js', 'logica.js', 'monitor.js', '_headers'].filter(existe);
+const publicos = [...arquivos.filter((f) => /\.(html|txt)$/.test(f)), 'app.js', 'logica.js', 'monitor.js', 'nativo.js', '_headers'].filter(existe);
 const segredos = [
   /-----BEGIN [A-Z ]*PRIVATE KEY-----/,
   /AKIA[0-9A-Z]{16}/,
