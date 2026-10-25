@@ -1,0 +1,20 @@
+{
+  "name": "hora-de-comer",
+  "private": true,
+  "scripts": {
+    "lint": "biome check .",
+    "knip": "knip",
+    "test": "node --test tests/logica.test.js",
+    "coverage": "node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=coverage/lcov.info tests/logica.test.js",
+    "test:e2e": "playwright test",
+    "serve": "http-server -p 4173 -c-1 .",
+    "verificar": "node verificar-lancamento.js",
+    "verificar:lancamento": "node verificar-lancamento.js --lancamento"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@playwright/test": "^1.48.0",
+    "knip": "^5.30.0",
+    "http-server": "^14.1.1"
+  }
+}
