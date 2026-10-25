@@ -35,6 +35,9 @@ function marcar(id, status) {
   salvar();
 }
 
+// Reagenda os alarmes do celular (só faz algo dentro do aplicativo Android).
+const reagendar = () => { if (typeof agendarAlarmes === 'function') agendarAlarmes(estado.refeicoes); };
+
 // ---------- tela ----------
 function desenhar() {
   const reg = registroHoje();
@@ -125,7 +128,7 @@ function tocar(m) {
   bip(); somTimer = setInterval(bip, 2500);
   try {
     if ('Notification' in window && Notification.permission === 'granted') {
-      new Notification('Hora de comer: ' + m.nome, { body: m.comida || m.hora, icon: 'logo-96.png' });
+      new Notification('Hora de comer: ' + m.nome, { body: m.comida || m.hora, icon: 'img/logo-96.png' });
     }
   } catch (e) { /* alguns celulares não aceitam este tipo de notificação */ }
 }
@@ -188,7 +191,7 @@ $('form-refeicao').addEventListener('submit', (e) => {
   estado.refeicoes.push(m);
   novaId = m.id;
   if (minutos(m.hora) <= agoraMin()) marcar(m.id, 'ignorar'); // horário de hoje já passou
-  salvar(); e.target.reset(); desenhar();
+  salvar(); e.target.reset(); desenhar(); reagendar();
 });
 
 $('lista').addEventListener('click', (e) => {
@@ -198,7 +201,7 @@ $('lista').addEventListener('click', (e) => {
   linha.classList.add('saindo');
   setTimeout(() => {
     estado.refeicoes = estado.refeicoes.filter((m) => m.id !== id);
-    salvar(); desenhar();
+    salvar(); desenhar(); reagendar();
   }, 250);
 });
 
@@ -222,6 +225,6 @@ $('meu-nome').value = estado.cuidador.eu; $('c-nome').value = estado.cuidador.no
 $('c-tel').value = estado.cuidador.tel; $('c-espera').value = estado.cuidador.espera;
 document.body.classList.toggle('grande', estado.grande);
 // os esqueletos do HTML ficam visíveis por um instante e depois entra o conteúdo real
-setTimeout(() => { desenhar(); verificar(); }, 500);
+setTimeout(() => { desenhar(); verificar(); reagendar(); }, 500);
 setInterval(verificar, 5000);
-      
+  
