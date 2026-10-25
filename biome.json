@@ -1,0 +1,14 @@
+{
+  "files": { "ignore": ["coverage", "node_modules", "playwright-report", "test-results"] },
+  "organizeImports": { "enabled": false },
+  "formatter": { "enabled": false },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "complexity": { "noForEach": "off" },
+      "style": { "useTemplate": "off" }
+    }
+  },
+  "javascript": { "formatter": { "quoteStyle": "single" } }
+}
