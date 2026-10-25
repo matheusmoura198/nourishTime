@@ -9,7 +9,10 @@
     "test:e2e": "playwright test",
     "serve": "http-server -p 4173 -c-1 .",
     "verificar": "node verificar-lancamento.js",
-    "verificar:lancamento": "node verificar-lancamento.js --lancamento"
+    "verificar:lancamento": "node verificar-lancamento.js --lancamento",
+    "web": "node scripts/copiar-web.js",
+    "android": "npm run web && npx cap sync android",
+    "android:abrir": "npx cap open android"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
