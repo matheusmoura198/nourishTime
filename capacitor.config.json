@@ -1,0 +1,8 @@
+{
+  "appId": "br.com.horadecomer.app",
+  "appName": "Hora de Comer",
+  "webDir": "www",
+  "plugins": {
+    "LocalNotifications": { "iconColor": "#F5A800" }
+  }
+}
