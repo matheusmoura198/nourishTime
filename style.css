@@ -1,0 +1,97 @@
+/* Hora de Comer - estilos compartilhados (landing + app) */
+:root{--ambar:#F5A800;--ambar-claro:#FFE7A8;--carvao:#1F1F23;--creme:#FBF8F1;--verde:#2F7D4F;--vermelho:#C8402A;--cinza:#6B6B72;--linha:#E4DDCB}
+*{box-sizing:border-box}
+html{font-size:17px}
+body{margin:0;font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;background:var(--creme);color:var(--carvao);line-height:1.55}
+body.grande{font-size:21px}
+h1,h2,h3{line-height:1.15;margin:0 0 .5em}
+h1{font-size:2.8rem;letter-spacing:-.02em}
+h2{font-size:1.7rem}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--carvao);outline-offset:3px}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+.topo{background:var(--carvao);color:var(--creme)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:10px;padding-bottom:10px}
+.marca{display:flex;align-items:center;gap:10px;font-weight:700;text-decoration:none;font-size:1.1rem}
+.marca img{width:44px;height:44px;background:var(--creme);border-radius:50%}
+.btn{display:inline-block;border:0;border-radius:12px;padding:.8em 1.3em;font:inherit;font-weight:700;cursor:pointer;background:var(--ambar);color:var(--carvao);text-decoration:none}
+.btn:hover{background:#FFB91F}
+.btn.sec{background:transparent;border:2px solid var(--carvao)}
+.btn.verde{background:var(--verde);color:#fff}
+.btn.peq{padding:.45em .9em;font-size:.9rem}
+/* landing */
+.hero{padding:56px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center}
+.hero p{font-size:1.2rem;max-width:34ch}
+.hero .acoes{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.alarme-demo{background:var(--carvao);color:var(--creme);border-radius:24px;padding:24px;text-align:center;box-shadow:0 14px 0 var(--ambar)}
+.alarme-demo img{width:120px;height:120px;background:var(--creme);border-radius:50%}
+.alarme-demo .hora{font-size:3rem;font-weight:700;color:var(--ambar)}
+.alarme-demo .linha{display:flex;gap:10px;margin-top:14px}
+.alarme-demo .linha span{flex:1;padding:.7em;border-radius:10px;font-weight:700}
+.secao{padding:48px 0;border-top:2px solid var(--linha)}
+.passos{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.passos li{border-left:5px solid var(--ambar);padding-left:16px}
+.passos b{font-size:1.2rem;display:block}
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.lista-dif{list-style:none;padding:0;margin:0}
+.lista-dif li{padding:14px 0;border-bottom:1px solid var(--linha)}
+.lista-dif b{display:block}
+.faixa{background:var(--ambar);padding:44px 0;text-align:center}
+.rodape{padding:24px 0;color:var(--cinza);font-size:.9rem}
+/* app */
+main.app{padding:24px 0 48px;display:grid;gap:20px}
+.caixa{background:#fff;border:2px solid var(--linha);border-radius:16px;padding:20px}
+.status-dia{font-size:1.2rem;font-weight:700}
+.refeicao{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--linha)}
+.refeicao:last-child{border:0}
+.refeicao .h{font-size:1.5rem;font-weight:700;min-width:4.2ch}
+.refeicao .info{flex:1}
+.refeicao small{color:var(--cinza)}
+.chip{padding:.2em .7em;border-radius:99px;font-size:.85rem;font-weight:700;background:var(--linha)}
+.chip.feito{background:#CFE9D8;color:#1E5B37}
+.chip.pulou{background:#F6D3CC;color:#8A2614}
+label{display:block;font-weight:700;margin:12px 0 4px}
+input{width:100%;padding:.7em;border:2px solid var(--linha);border-radius:10px;font:inherit}
+.linha2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sugestoes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.alerta{background:#F6D3CC;border:2px solid var(--vermelho);border-radius:12px;padding:12px;margin-bottom:10px}
+.hist{display:flex;gap:8px}
+.hist div{flex:1;text-align:center;border-radius:10px;padding:8px 2px;background:var(--linha);font-size:.85rem}
+.hist .bom{background:#CFE9D8}.hist .ruim{background:#F6D3CC}
+.vazio{color:var(--cinza)}
+.fundo{position:fixed;inset:0;background:rgba(31,31,35,.88);display:flex;align-items:center;justify-content:center;padding:20px;z-index:10;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.fundo.aberto{opacity:1;visibility:visible}
+.modal{background:var(--creme);border-radius:24px;padding:28px;max-width:420px;width:100%;text-align:center;border:6px solid var(--ambar);transform:scale(.92);transition:transform .25s}
+.fundo.aberto .modal{transform:scale(1)}
+.modal img{width:90px;animation:tremer .5s infinite}
+.modal .h{font-size:2.6rem;font-weight:700}
+.modal .btn{display:block;width:100%;margin-top:10px;font-size:1.1rem}
+@keyframes tremer{25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+/* movimento: esqueleto, entrada, saída e progresso */
+.esqueleto{border-radius:12px;margin:8px 0;background:linear-gradient(90deg,var(--linha) 25%,#F1EBDB 50%,var(--linha) 75%);background-size:200% 100%;animation:brilho 1.2s infinite linear}
+@keyframes brilho{to{background-position:-200% 0}}
+.progresso{height:12px;border-radius:99px;background:var(--linha);overflow:hidden;margin:10px 0 6px}
+.progresso div{height:100%;width:0;background:var(--verde);border-radius:99px;transition:width .5s ease}
+.refeicao.nova{animation:entra .3s ease-out}
+.refeicao.saindo{opacity:0;transform:translateX(24px);transition:opacity .25s,transform .25s}
+@keyframes entra{from{opacity:0;transform:translateY(-8px)}}
+.caixa{animation:entra .4s ease-out}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:700px){h1{font-size:2.1rem}.hero .wrap,.duas,.passos{grid-template-columns:1fr}}
+
+/* classes que substituem estilos inline (a CSP bloqueia style="...") */
+.topo16{margin-top:16px}
+.nota{margin:6px 0 12px}
+.titulo-modal{margin:8px 0 0;font-weight:700}
+.linha-esq{height:56px}
+.dia-esq{height:48px}
+.alerta .btn{margin-top:8px}
+.alarme-demo .linha .ok{background:var(--verde)}
+.alarme-demo .linha .adiar{background:var(--ambar);color:var(--carvao)}
+.btn.escuro,.btn.escuro:hover{background:var(--carvao);color:var(--creme)}
+.rodape a{color:inherit}
+.doc{padding:32px 0 48px;max-width:720px}
+.doc h2{margin-top:1.6em;font-size:1.3rem}
+.doc li{margin-bottom:.4em}
+  
