@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#1F1F23">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meu dia – Hora de Comer</title>
+<meta name="description" content="Seu dia de refeições com alarme na hora certa e aviso ao cuidador.">
+<link rel="icon" href="logo-96.png">
+<link rel="apple-touch-icon" href="logo-256.png">
+<link rel="stylesheet" href="style.css">
+<script src="monitor.js"></script>
+</head>
+<body>
+<header class="topo"><div class="wrap">
+  <a class="marca" href="index.html"><img src="logo-96.png" width="44" height="44" alt="">Hora de Comer</a>
+  <button class="btn peq" id="btn-letra" type="button">Letra grande</button>
+</div></header>
+
+<div class="wrap"><main class="app">
+  <noscript><p class="alerta">Este site precisa de JavaScript para funcionar.</p></noscript>
+  <p class="alerta" id="aviso-armazenamento" role="alert" hidden>Não foi possível salvar neste navegador (modo privado ou armazenamento bloqueado). Seus dados serão perdidos ao fechar a página.</p>
+
+  <section class="caixa" id="aviso-alarme">
+    <b>Deixe esta página aberta para o alarme tocar.</b>
+    <p class="nota">Toque no botão para liberar som e notificações.</p>
+    <button class="btn" id="btn-ativar" type="button">Ativar alarme</button>
+  </section>
+
+  <div id="alertas"></div>
+
+  <section class="caixa">
+    <h2>Hoje</h2>
+    <p class="status-dia" id="resumo" aria-live="polite"></p>
+    <div id="progresso" class="progresso" role="progressbar" aria-label="Refeições feitas hoje" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="barra"></div></div>
+    <div id="lista" aria-busy="true"><div class="esqueleto linha-esq"></div><div class="esqueleto linha-esq"></div></div>
+  </section>
+
+  <section class="caixa">
+    <h2>Adicionar refeição</h2>
+    <div class="sugestoes" id="sugestoes">
+      <button class="btn sec peq" type="button" data-nome="Café da manhã" data-hora="07:30">Café da manhã</button>
+      <button class="btn sec peq" type="button" data-nome="Almoço" data-hora="12:30">Almoço</button>
+      <button class="btn sec peq" type="button" data-nome="Lanche" data-hora="16:00">Lanche</button>
+      <button class="btn sec peq" type="button" data-nome="Jantar" data-hora="19:30">Jantar</button>
+    </div>
+    <form id="form-refeicao">
+      <div class="linha2">
+        <div><label for="nome">Refeição</label><input id="nome" required maxlength="40" placeholder="Almoço"></div>
+        <div><label for="hora">Horário</label><input id="hora" type="time" required></div>
+      </div>
+      <label for="comida">O que vou comer</label>
+      <input id="comida" maxlength="80" placeholder="Arroz, feijão e frango">
+      <button class="btn topo16" type="submit">Salvar refeição</button>
+      <span id="msg-refeicao" class="vazio" role="status"></span>
+    </form>
+  </section>
+
+  <section class="caixa">
+    <h2>Cuidador</h2>
+    <form id="form-cuidador">
+      <div class="linha2">
+        <div><label for="meu-nome">Seu nome</label><input id="meu-nome" maxlength="40" placeholder="Maria"></div>
+        <div><label for="c-nome">Nome do cuidador</label><input id="c-nome" maxlength="40" placeholder="João"></div>
+      </div>
+      <div class="linha2">
+        <div><label for="c-tel">WhatsApp (com DDD)</label><input id="c-tel" type="tel" inputmode="tel" maxlength="20" placeholder="11999998888"></div>
+        <div><label for="c-espera">Avisar após (minutos)</label><input id="c-espera" type="number" min="10" max="60" value="30"></div>
+      </div>
+      <button class="btn topo16" type="submit">Salvar cuidador</button>
+      <span id="msg-cuidador" class="vazio" role="status"></span>
+    </form>
+  </section>
+
+  <section class="caixa">
+    <h2>Últimos 7 dias</h2>
+    <div class="hist" id="historico"><div class="esqueleto dia-esq"></div><div class="esqueleto dia-esq"></div><div class="esqueleto dia-esq"></div></div>
+  </section>
+
+<section class="caixa">
+    <h2>Seus dados</h2>
+    <p class="nota">Tudo fica só neste aparelho. O histórico guarda os últimos 30 dias. <a href="privacidade-e-termos.html">Privacidade e termos</a></p>
+    <button class="btn sec" id="btn-apagar-tudo" type="button">Apagar todos os meus dados</button>
+  </section>
+
+</main></div>
+<footer class="rodape"><div class="wrap">Ferramenta de apoio: não substitui orientação médica e o alarme só toca com a página aberta. <a href="privacidade-e-termos.html">Privacidade e termos</a></div></footer>
+
+<div class="fundo" id="fundo" role="alertdialog" aria-modal="true" aria-labelledby="m-titulo">
+  <div class="modal">
+    <img src="logo-256.png" alt="" loading="lazy" width="90" height="90">
+    <p id="m-titulo" class="titulo-modal">Hora de comer!</p>
+    <div class="h" id="m-hora"></div>
+    <p id="m-texto"></p>
+    <button class="btn verde" id="m-comi" type="button">Já comi</button>
+    <button class="btn" id="m-adiar" type="button">Daqui 10 minutos</button>
+    <button class="btn sec" id="m-pular" type="button">Vou pular</button>
+  </div>
+</div>
+
+<script src="logica.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
+  
